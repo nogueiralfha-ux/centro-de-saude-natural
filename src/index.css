@@ -839,10 +839,12 @@ body {
 }
 
 /* Responsividade de Média Largura para evitar esmagamento com Sidebar ativa */
-@media (max-width: 1024px) {
-  .grid-2,
-  .grid-3 {
+@media (min-width: 901px) and (max-width: 1250px) {
+  .grid-2 {
     grid-template-columns: 1fr;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
 }
