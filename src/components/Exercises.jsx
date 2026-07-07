@@ -187,6 +187,14 @@ export default function Exercises({ setActiveTab }) {
     setIsTimerRunning(false);
   };
 
+  const handleExerciseClick = (exName) => {
+    const cleanName = exName.split('(')[0].trim().toLowerCase();
+    const found = exercises.find(ex => ex.name.toLowerCase().includes(cleanName) || cleanName.includes(ex.name.toLowerCase()));
+    if (found) {
+      setSelectedExercise(found);
+    }
+  };
+
   return (
     <div className="fade-in">
       <div className="grid-2">
@@ -263,7 +271,13 @@ export default function Exercises({ setActiveTab }) {
                         </span>
                         <ol style={{ paddingLeft: '16px', margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
                           {wp.exercisesList.map((exName, exIdx) => (
-                            <li key={exIdx} style={{ marginBottom: '4px' }}>{exName}</li>
+                            <li 
+                              key={exIdx} 
+                              style={{ marginBottom: '4px', cursor: 'pointer', color: 'var(--primary)', textDecoration: 'underline' }}
+                              onClick={() => handleExerciseClick(exName)}
+                            >
+                              {exName}
+                            </li>
                           ))}
                         </ol>
                       </div>
